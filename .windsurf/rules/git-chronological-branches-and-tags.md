@@ -42,6 +42,16 @@ Examples:
 - Prefer **squash merge** to keep `main` readable.
 - PR title format:
   - `B### M##: <short summary>`
+
+<pr_body_formatting>
+
+- PR descriptions should be real markdown (headings, lists, paragraphs).
+- When creating PRs via `gh`, do **not** pass literal `\n` sequences in a single quoted `--body` string.
+- Preferred:
+  - `gh pr create --body-file <path>`
+- Acceptable:
+  - Create a file via heredoc and use `--body-file`.
+    </pr_body_formatting>
     </pull_requests>
 
 <tagging>

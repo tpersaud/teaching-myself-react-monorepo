@@ -51,6 +51,9 @@ A guided workflow for working in this repo while keeping changes ordered by a ch
    - Open a PR into `main`.
    - PR title format:
      - `B### M##: <short summary>`
+   - When creating the PR via `gh`, prefer a body file so markdown renders correctly:
+     - `gh pr create --base main --head <branch> --title "..." --body-file <path>`
+   - Avoid embedding literal `\n` sequences in a single quoted `--body` string.
    - Prefer squash merge.
 
 8. Tag checkpoint (optional)
