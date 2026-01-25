@@ -11,9 +11,12 @@ A guided workflow for working in this repo while keeping changes ordered by a ch
 1. Create/select the Issue (required)
 
    - Before starting any work (videos, planning, docs, code), ensure there is a GitHub Issue.
-   - Add it to the Project board and label it:
+   - Add it to the Project board.
+   - Apply required labels:
      - `module:##` (e.g. `module:00`)
      - `type:*` (e.g. `type:docs`, `type:capstone`, `type:tooling`, `type:spike`)
+   - Assign it to the module milestone:
+     - `Module 00 — Tooling & React baseline` (for module 00)
    - Put the issue number somewhere convenient (you will reference it in the PR body).
    - Guidance lives in:
      - `.windsurf/workflows/github-issues-board-flow.md`
@@ -70,6 +73,7 @@ A guided workflow for working in this repo while keeping changes ordered by a ch
      - `## Issues`
        - `Closes #123` (or `Fixes #123` / `Resolves #123`)
        - If none: `None`
+   - GitHub auto-close keywords are interpreted only when the PR targets the default branch (`main`).
    - Prefer squash merge.
 
 9. Tag checkpoint (optional)
