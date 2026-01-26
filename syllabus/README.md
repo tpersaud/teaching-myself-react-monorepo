@@ -165,6 +165,7 @@ Capstone project:
 
 - https://app.pluralsight.com/paths/skill/react-18
 - https://www.youtube.com/watch?v=H6QAY_VqvUc&list=PLC3y8-rFHvwg9D7EOSEBabuutIdKZN5V3 (supplemental concept reinforcement)
+- https://www.udemy.com/course/react-the-complete-guide-incl-redux/
 
 ## Pair-programming loop (how we’ll work)
 

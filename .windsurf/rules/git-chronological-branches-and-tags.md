@@ -51,8 +51,31 @@ Examples:
   - `gh pr create --body-file <path>`
 - Acceptable:
   - Create a file via heredoc and use `--body-file`.
-    </pr_body_formatting>
-    </pull_requests>
+
+<issue_linking>
+
+- If a PR completes an issue, the PR body must include an `## Issues` section.
+- Use GitHub auto-close keywords so issues close when the PR merges to `main`:
+  - `Closes #123`
+  - `Fixes #123`
+  - `Resolves #123`
+- If there is no issue for the work, explicitly state `## Issues\nNone`.
+- GitHub closing keywords are interpreted only when the PR targets the repository's default branch (`main`).
+  </issue_linking>
+  </pr_body_formatting>
+  </pull_requests>
+
+<issues_and_board_tracking>
+
+- Use GitHub **Labels** as "tags" for issues.
+- Every issue must have a module label:
+  - `module:00`, `module:01`, ...
+- Every issue must have a type label:
+  - `type:docs`, `type:capstone`, `type:tooling`, `type:spike`, `type:bug`
+- Prefer one GitHub Project board for the repo and track progress with columns (Backlog/Ready/Doing/Blocked/Review/Done).
+- Each module is tracked as a Milestone.
+- Every issue must belong to the correct module milestone (e.g. `Module 00 — Tooling & React baseline`).
+  </issues_and_board_tracking>
 
 <tagging>
 - Use **annotated tags** for durable learning checkpoints.
