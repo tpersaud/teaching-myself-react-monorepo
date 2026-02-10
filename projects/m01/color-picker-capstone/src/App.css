@@ -5,13 +5,43 @@
 
 .app {
   width: 100%;
-  max-width: 720px;
+  max-width: 980px;
   margin: 0 auto;
   display: grid;
-  gap: var(--space-4);
+  gap: var(--space-2);
 }
 
-.appHeader {
+.app > header,
+.app > main,
+.app > footer {
+  width: 100%;
+}
+
+.app > header,
+.app > footer {
+  padding: var(--space-3) var(--space-4);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.app > main {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  min-height: 25vh;
+  min-width: 25vw;
+}
+
+
+footer {
+  color: var(--muted);
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+header {
   display: grid;
   gap: var(--space-1);
 }
@@ -117,5 +147,33 @@
   .controlGrid {
     grid-template-columns: 220px 1fr;
     align-items: end;
+  }
+}
+
+@media (min-width: 900px) {
+  .app > main {
+    display: grid;
+    grid-template-columns: minmax(280px, 360px) 1fr;
+    align-items: stretch;
+  }
+
+  .app > main > :first-child {
+    border-right: 1px solid var(--border);
+  }
+
+  .app > main > :nth-child(2) {
+    border-left: 1px solid transparent;
+  }
+}
+
+@media (min-width: 1200px) {
+  #root {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .app {
+    margin: 0;
   }
 }
