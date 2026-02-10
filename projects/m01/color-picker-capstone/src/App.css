@@ -1,42 +1,121 @@
 #root {
-  max-width: 1280px;
+  min-height: 100svh;
+  padding: var(--space-4);
+}
+
+.app {
+  width: 100%;
+  max-width: 720px;
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  display: grid;
+  gap: var(--space-4);
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.appHeader {
+  display: grid;
+  gap: var(--space-1);
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.appTitle {
+  font-size: 1.5rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.appSubtitle {
+  color: var(--muted);
+  font-size: 0.95rem;
 }
 
 .card {
-  padding: 2em;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-4);
+  display: grid;
+  gap: var(--space-3);
 }
 
-.read-the-docs {
-  color: #888;
+.previewRow {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+}
+
+.previewSwatch {
+  height: 160px;
+  border-radius: calc(var(--radius) - 2px);
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+}
+
+.valueRow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.hexValue {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 1.05rem;
+}
+
+.controls {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.controlGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+}
+
+.field {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.label {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.textInput {
+  width: 100%;
+  padding: 0.65rem 0.75rem;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text);
+}
+
+.textInput::placeholder {
+  color: color-mix(in oklab, var(--muted) 70%, transparent);
+}
+
+.actions {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+@media (min-width: 640px) {
+  #root {
+    padding: var(--space-5);
+  }
+
+  .appTitle {
+    font-size: 1.75rem;
+  }
+
+  .previewRow {
+    grid-template-columns: 220px 1fr;
+    align-items: start;
+  }
+
+  .controlGrid {
+    grid-template-columns: 220px 1fr;
+    align-items: end;
+  }
 }
