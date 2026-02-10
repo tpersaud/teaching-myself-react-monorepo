@@ -5,9 +5,9 @@ import ColorPreview from './components/ColorPreview'
 
 function App() {
   const year = new Date().getFullYear();
-  const defaultHex = "#000000" as string;
+  const defaultColorInHexidecimal = "#000000" as string;
 
-  const [hex, setHex] = useState(defaultHex);
+  const [color, setColor] = useState(defaultColorInHexidecimal);
 
   return (
     <>
@@ -16,8 +16,8 @@ function App() {
         <h1>Hello World</h1>
         </header>
         <main>
-          <ColorControls hex={hex} defaultHex={defaultHex} onHexChange={setHex}/>
-          <ColorPreview hex={hex}/>
+          <ColorControls hex={color} defaultHexValue={defaultColorInHexidecimal} onHexChange={setColor}/>
+          <ColorPreview hex={color} onColorChange={setColor}/>
         </main>
         <footer>
           <p>© {year} Color Picker Capstone</p>

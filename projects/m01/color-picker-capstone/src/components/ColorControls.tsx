@@ -1,6 +1,6 @@
 import './ColorControls.css'
 
-function ColorControls(props: { hex: string, defaultHex: string, onHexChange: (nextHex: string) => void }) {
+function ColorControls(props: { hex: string, defaultHexValue: string, onHexChange: (next: string) => void }) {
 
   return (
     <section className="color-controls">
@@ -10,7 +10,7 @@ function ColorControls(props: { hex: string, defaultHex: string, onHexChange: (n
       <div className="color-controls-meta">
         <div className="color-controls-hex">{props.hex}</div>
       </div>
-      <button type="reset" onClick={() => props.onHexChange(props.defaultHex)}>Reset To Default</button>
+      <button type="reset" onClick={() => props.onHexChange(props.defaultHexValue)}>Reset To Default</button>
     </section>
   )
 }
