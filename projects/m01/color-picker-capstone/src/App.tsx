@@ -1,9 +1,14 @@
+import { useState } from 'react';
 import './App.css'
 import ColorControls from './components/ColorControls'
 import ColorPreview from './components/ColorPreview'
 
 function App() {
   const year = new Date().getFullYear();
+  const defaultHex = "#00000000" as string;
+
+  const [hex, setHex] = useState(defaultHex);
+
   return (
     <>
       <div className="app">
@@ -11,8 +16,8 @@ function App() {
         <h1>Hello World</h1>
         </header>
         <main>
-          <ColorControls />
-          <ColorPreview />
+          <ColorControls hex={hex} defaultHex={defaultHex} onHexChange={setHex}/>
+          <ColorPreview hex={hex}/>
         </main>
         <footer>
           <p>© {year} Color Picker Capstone</p>
