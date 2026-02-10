@@ -5,7 +5,7 @@ import ColorPreview from './components/ColorPreview'
 
 function App() {
   const year = new Date().getFullYear();
-  const defaultHex = "#00000000" as string;
+  const defaultHex = "#000000" as string;
 
   const [hex, setHex] = useState(defaultHex);
 
