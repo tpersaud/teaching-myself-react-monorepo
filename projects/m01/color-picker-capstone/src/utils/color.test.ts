@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { hexToRgba, normalizeHex } from "./color";
+import { hexToHex6, hexToRgba, normalizeHex } from "./color";
 
 describe("normalizeHex", () => {
   it("normalizes 3-digit shorthand with hash", () => {
@@ -66,5 +66,33 @@ describe("hexToRgba", () => {
   it("returns null for invalid hex", () => {
     expect(hexToRgba("#gggggg")).toBeNull();
     expect(hexToRgba("#abcd")).toBeNull();
+  });
+});
+
+describe("hexToHex6", () => {
+  it("returns 6-digit hex unchanged", () => {
+    expect(hexToHex6("#aabbcc")).toBe("#aabbcc");
+  });
+
+  it("expands shorthand 3-digit to 6-digit", () => {
+    expect(hexToHex6("#abc")).toBe("#aabbcc");
+    expect(hexToHex6("abc")).toBe("#aabbcc");
+  });
+
+  it("strips alpha channel from 8-digit hex", () => {
+    expect(hexToHex6("#aabbccdd")).toBe("#aabbcc");
+    expect(hexToHex6("aabbccdd")).toBe("#aabbcc");
+  });
+
+  it("accepts uppercase and trims whitespace", () => {
+    expect(hexToHex6(" AABBCCDD ")).toBe("#aabbcc");
+  });
+
+  it("returns null for invalid input", () => {
+    expect(hexToHex6("")).toBeNull();
+    expect(hexToHex6("#")).toBeNull();
+    expect(hexToHex6("#abcd")).toBeNull();
+    expect(hexToHex6("#gggggg")).toBeNull();
+    expect(hexToHex6("#12 3456")).toBeNull();
   });
 });

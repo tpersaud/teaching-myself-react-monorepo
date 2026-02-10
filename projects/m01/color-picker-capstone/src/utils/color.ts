@@ -48,6 +48,16 @@ export function normalizeHex(input: string): string | null {
   return `#${withoutHash.toLowerCase()}`;
 }
 
+export function hexToHex6(input: string): string | null {
+  const normalized = normalizeHex(input);
+  if (normalized === null) return null;
+
+  // normalized is "#rrggbb" or "#rrggbbaa"
+  // <input type="color"> expects "#rrggbb"
+  if (normalized.length === 9) return normalized.slice(0, 7);
+  return normalized;
+}
+
 export function hexToRgba(hex: string): Rgba | null {
   const normalized = normalizeHex(hex);
   if (normalized === null) return null;
