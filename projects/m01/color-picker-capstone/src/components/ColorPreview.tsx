@@ -1,7 +1,7 @@
 import './ColorPreview.css'
 import { hexToHex6 } from '../utils/color';
 
-function ColorPreview(props: { hex: string, onColorChange: (next: string) => void }) {
+function ColorPreview(props: { hex: string, isHexInputValid: boolean, onColorChange: (next: string) => void }) {
   const inputHex = hexToHex6(props.hex) ?? "#000000";
 
   return (
@@ -10,7 +10,7 @@ function ColorPreview(props: { hex: string, onColorChange: (next: string) => voi
       <input id="color-preview-swatch" type="color" className="color-preview-swatch" value={inputHex} onChange={(e) => props.onColorChange(e.target.value)}/>
       <label htmlFor="color-preview-swatch" className="color-preview-label">Color Displayed</label>
       <div className="color-preview-meta">
-        <div className="color-preview-hex">{inputHex}</div>
+        <div className="color-preview-hex">{props.isHexInputValid ? inputHex : "Invalid"}</div>
       </div>
     </section>
   )
