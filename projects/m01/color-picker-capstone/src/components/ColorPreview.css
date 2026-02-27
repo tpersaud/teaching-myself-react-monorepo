@@ -1,0 +1,31 @@
+.color-preview {
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-4);
+}
+
+.color-preview-title {
+  font-size: 1.1rem;
+  height: 10%;
+}
+
+.color-preview-swatch {
+  height: 100%;
+  width: 100%;
+  border-radius: calc(var(--radius) - 2px);
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+}
+
+.color-preview-meta {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.color-preview-hex {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+

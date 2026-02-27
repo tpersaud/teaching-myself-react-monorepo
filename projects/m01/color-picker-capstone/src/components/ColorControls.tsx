@@ -1,0 +1,18 @@
+import './ColorControls.css'
+
+function ColorControls(props: { hex: string, defaultHexValue: string, hexInput: string, onHexInputChange: (next: string) => void }) {
+
+  return (
+    <section className="color-controls">
+      <h2 className="color-controls-title">Color Controls</h2>
+      <input id="color-controls-hex" type="text" value={props.hexInput} onChange={(e) => props.onHexInputChange(e.target.value)} />
+      <label htmlFor="color-controls-hex" className="color-controls-label">Hex</label>
+      <div className="color-controls-meta">
+        <div className="color-controls-hex">{props.hex}</div>
+      </div>
+      <button type="reset" onClick={() => props.onHexInputChange(props.defaultHexValue)}>Reset To Default</button>
+    </section>
+  )
+}
+
+export default ColorControls

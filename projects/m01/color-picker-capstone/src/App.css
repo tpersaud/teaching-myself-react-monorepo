@@ -1,0 +1,179 @@
+#root {
+  min-height: 100svh;
+  padding: var(--space-4);
+}
+
+.app {
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto;
+  display: grid;
+  gap: var(--space-2);
+}
+
+.app > header,
+.app > main,
+.app > footer {
+  width: 100%;
+}
+
+.app > header,
+.app > footer {
+  padding: var(--space-3) var(--space-4);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.app > main {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  min-height: 25vh;
+  min-width: 25vw;
+}
+
+
+footer {
+  color: var(--muted);
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+header {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.appTitle {
+  font-size: 1.5rem;
+}
+
+.appSubtitle {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-4);
+  display: grid;
+  gap: var(--space-3);
+}
+
+.previewRow {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+}
+
+.previewSwatch {
+  height: 160px;
+  border-radius: calc(var(--radius) - 2px);
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+}
+
+.valueRow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.hexValue {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 1.05rem;
+}
+
+.controls {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.controlGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+}
+
+.field {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.label {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.textInput {
+  width: 100%;
+  padding: 0.65rem 0.75rem;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text);
+}
+
+.textInput::placeholder {
+  color: color-mix(in oklab, var(--muted) 70%, transparent);
+}
+
+.actions {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+@media (min-width: 640px) {
+  #root {
+    padding: var(--space-5);
+  }
+
+  .appTitle {
+    font-size: 1.75rem;
+  }
+
+  .previewRow {
+    grid-template-columns: 220px 1fr;
+    align-items: start;
+  }
+
+  .controlGrid {
+    grid-template-columns: 220px 1fr;
+    align-items: end;
+  }
+}
+
+@media (min-width: 900px) {
+  .app > main {
+    display: grid;
+    grid-template-columns: minmax(280px, 360px) 1fr;
+    align-items: stretch;
+  }
+
+  .app > main > :first-child {
+    border-right: 1px solid var(--border);
+  }
+
+  .app > main > :nth-child(2) {
+    border-left: 1px solid transparent;
+  }
+}
+
+@media (min-width: 1200px) {
+  #root {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .app {
+    margin: 0;
+  }
+}
