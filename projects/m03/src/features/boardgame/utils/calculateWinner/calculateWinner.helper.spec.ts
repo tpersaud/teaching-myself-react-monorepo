@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import type { Board } from '../types'
+import type { Board } from '../../types'
 import {
   getBoardSize,
   getColumns,

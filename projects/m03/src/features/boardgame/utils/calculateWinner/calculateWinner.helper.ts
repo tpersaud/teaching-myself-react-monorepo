@@ -1,4 +1,4 @@
-import type { Board, SquareValue } from "../types";
+import type { Board, SquareValue } from "../../types";
 
 export function getBoardSize(board: Board): number {
     const rowCount = board.length;

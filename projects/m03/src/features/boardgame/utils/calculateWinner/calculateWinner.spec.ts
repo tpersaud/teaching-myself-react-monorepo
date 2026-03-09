@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import type { Board, GameResult, SquareValue } from '../types'
+import type { Board, GameResult, SquareValue } from '../../types'
 import * as calculateWinnerModule from './calculateWinner'
 
 const calculateWinner = (

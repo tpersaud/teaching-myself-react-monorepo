@@ -1,4 +1,4 @@
-import type { Board, GameResult, PlayerMark } from "../types";
+import type { Board, GameResult, PlayerMark } from "../../types";
 import {
   getBoardSize,
   getWinningLines,

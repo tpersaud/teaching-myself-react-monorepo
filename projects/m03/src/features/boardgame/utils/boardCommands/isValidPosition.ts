@@ -1,5 +1,5 @@
 import type { Board, Position } from '../../types'
-import { getBoardSize } from '../calculateWinner.helper'
+import { getBoardSize } from '../calculateWinner'
 
 export function isValidPosition(board: Board, position: Position): boolean {
   const size = getBoardSize(board)
