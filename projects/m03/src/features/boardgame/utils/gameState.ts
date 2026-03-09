@@ -10,11 +10,14 @@ function togglePlayer(player: PlayerMark): PlayerMark {
   return player === 'X' ? 'O' : 'X'
 }
 
-function getNextPlayerForMoveIndex(moveIndex: number): PlayerMark {
-  return moveIndex % 2 === 0 ? 'X' : 'O'
+function getNextPlayerForMoveIndex(moveIndex: number, startingPlayer: PlayerMark): PlayerMark {
+  if (moveIndex % 2 === 0) {
+    return startingPlayer
+  }
+  return togglePlayer(startingPlayer)
 }
 
-export function createInitialGameState(size: number): GameState {
+export function createInitialGameState(size: number, startingPlayer: PlayerMark): GameState {
   if (size <= 0) {
     throw new Error('Board size must be greater than 0.')
   }
@@ -24,7 +27,8 @@ export function createInitialGameState(size: number): GameState {
   return {
     history: [board],
     currentMoveIndex: 0,
-    nextPlayer: 'X',
+    startingPlayer,
+    nextPlayer: startingPlayer,
   }
 }
 
@@ -36,7 +40,7 @@ export function jumpTo(state: GameState, moveIndex: number): GameState {
   return {
     ...state,
     currentMoveIndex: moveIndex,
-    nextPlayer: getNextPlayerForMoveIndex(moveIndex),
+    nextPlayer: getNextPlayerForMoveIndex(moveIndex, state.startingPlayer),
   }
 }
 
@@ -72,6 +76,7 @@ export function makeMove(state: GameState, position: Position): GameState {
   return {
     history: nextHistory,
     currentMoveIndex: state.currentMoveIndex + 1,
+    startingPlayer: state.startingPlayer,
     nextPlayer: togglePlayer(state.nextPlayer),
   }
 }
