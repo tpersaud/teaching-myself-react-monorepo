@@ -1,4 +1,4 @@
-import type { Board } from "../types";
+import type { Board, SquareValue } from "../types";
 
 export function getBoardSize(board: Board): number {
     const rowCount = board.length;
@@ -25,3 +25,9 @@ export function getBoardSize(board: Board): number {
 
     return rowCount;
 }
+
+export const isLineEmpty = (line: SquareValue[]): boolean =>
+  line.every((square) => square === null);
+
+export const isWinningLine = (line: SquareValue[]): boolean =>
+  line.length > 0 && line[0] !== null && line.every(square => square === line[0]);
