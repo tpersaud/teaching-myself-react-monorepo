@@ -46,3 +46,17 @@ export const getDiagonals = (board: Board): SquareValue[][] => {
 
   return [mainDiagonal, antiDiagonal];
 };
+
+export const getWinningLines = (board: Board): SquareValue[][] => [
+  ...getRows(board),
+  ...getColumns(board),
+  ...getDiagonals(board),
+];
+
+export const validateWinningMarks = (marks: SquareValue[]): void => {
+  const uniqueMarks = new Set(marks.filter(mark => mark !== null));
+
+  if (uniqueMarks.size > 1) {
+    throw new Error("Invalid board state: multiple players have winning lines.");
+  }
+};

@@ -6,8 +6,10 @@ import {
   getColumns,
   getDiagonals,
   getRows,
+  getWinningLines,
   isLineEmpty,
   isWinningLine,
+  validateWinningMarks,
 } from './calculateWinner.helper'
 
 function makeBoard(rows: (null | 'X' | 'O')[][]): Board {
@@ -154,5 +156,53 @@ describe('getDiagonals', () => {
       ['X', 'X', 'X'],
       ['O', 'X', 'O'],
     ])
+  })
+})
+
+describe('getWinningLines', () => {
+  it('returns rows, then columns, then diagonals', () => {
+    const board = makeBoard([
+      ['X', null, 'O'],
+      [null, 'X', null],
+      ['O', null, 'X'],
+    ])
+
+    expect(getWinningLines(board)).toEqual([
+      // rows
+      ['X', null, 'O'],
+      [null, 'X', null],
+      ['O', null, 'X'],
+
+      // columns
+      ['X', null, 'O'],
+      [null, 'X', null],
+      ['O', null, 'X'],
+
+      // diagonals
+      ['X', 'X', 'X'],
+      ['O', 'X', 'O'],
+    ])
+  })
+})
+
+describe('validateWinningMarks', () => {
+  it('does not throw when there are no winning marks', () => {
+    expect(() => validateWinningMarks([])).not.toThrow()
+    expect(() => validateWinningMarks([null, null])).not.toThrow()
+  })
+
+  it('does not throw when there is only one unique winning mark', () => {
+    expect(() => validateWinningMarks(['X'])).not.toThrow()
+    expect(() => validateWinningMarks(['X', 'X'])).not.toThrow()
+    expect(() => validateWinningMarks([null, 'O', 'O'])).not.toThrow()
+  })
+
+  it('throws when more than one player has a winning line', () => {
+    expect(() => validateWinningMarks(['X', 'O'])).toThrow(
+      'Invalid board state: multiple players have winning lines.'
+    )
+    expect(() => validateWinningMarks([null, 'X', 'O', 'X'])).toThrow(
+      'Invalid board state: multiple players have winning lines.'
+    )
   })
 })
