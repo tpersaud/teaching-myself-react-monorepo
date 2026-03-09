@@ -31,3 +31,18 @@ export const isLineEmpty = (line: SquareValue[]): boolean =>
 
 export const isWinningLine = (line: SquareValue[]): boolean =>
   line.length > 0 && line[0] !== null && line.every(square => square === line[0]);
+
+export const getRows = (board: Board): SquareValue[][] =>
+  board.slice();
+
+export const getColumns = (board: Board): SquareValue[][] =>
+  board[0].map((_, colIndex) => board.map(row => row[colIndex]));
+
+export const getDiagonals = (board: Board): SquareValue[][] => {
+  const size = board.length;
+
+  const mainDiagonal = board.map((row, i) => row[i]);
+  const antiDiagonal = board.map((row, i) => row[size - 1 - i]);
+
+  return [mainDiagonal, antiDiagonal];
+};

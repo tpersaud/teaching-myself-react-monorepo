@@ -1,7 +1,14 @@
 import { describe, expect, it } from 'vitest'
 
 import type { Board } from '../types'
-import { getBoardSize, isLineEmpty, isWinningLine } from './calculateWinner.helper'
+import {
+  getBoardSize,
+  getColumns,
+  getDiagonals,
+  getRows,
+  isLineEmpty,
+  isWinningLine,
+} from './calculateWinner.helper'
 
 function makeBoard(rows: (null | 'X' | 'O')[][]): Board {
   return rows as unknown as Board
@@ -91,5 +98,61 @@ describe('isWinningLine', () => {
   it('returns false when the line contains null after a mark', () => {
     expect(isWinningLine(['X', 'X', null])).toBe(false)
     expect(isWinningLine(['O', null, 'O'])).toBe(false)
+  })
+})
+
+describe('getRows', () => {
+  it('returns the rows in order', () => {
+    const board = makeBoard([
+      ['X', null, 'O'],
+      [null, 'X', null],
+      ['O', null, 'X'],
+    ])
+
+    expect(getRows(board)).toEqual([
+      ['X', null, 'O'],
+      [null, 'X', null],
+      ['O', null, 'X'],
+    ])
+  })
+
+  it('returns a new array instance (does not return the same reference)', () => {
+    const board = makeBoard([
+      [null, null],
+      [null, null],
+    ])
+
+    expect(getRows(board)).not.toBe(board)
+  })
+})
+
+describe('getColumns', () => {
+  it('returns the columns in order', () => {
+    const board = makeBoard([
+      ['X', null, 'O'],
+      [null, 'X', null],
+      ['O', null, 'X'],
+    ])
+
+    expect(getColumns(board)).toEqual([
+      ['X', null, 'O'],
+      [null, 'X', null],
+      ['O', null, 'X'],
+    ])
+  })
+})
+
+describe('getDiagonals', () => {
+  it('returns main diagonal then anti-diagonal', () => {
+    const board = makeBoard([
+      ['X', null, 'O'],
+      [null, 'X', null],
+      ['O', null, 'X'],
+    ])
+
+    expect(getDiagonals(board)).toEqual([
+      ['X', 'X', 'X'],
+      ['O', 'X', 'O'],
+    ])
   })
 })
