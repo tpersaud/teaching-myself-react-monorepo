@@ -2,16 +2,18 @@ import './App.css'
 
 import { GameBoard } from '../features/boardgame/components/GameBoard'
 import { StatusBar } from '../features/boardgame/components/StatusBar'
+import type { Position, SquareValue } from '../features/boardgame/types'
 
 function App() {
   const boardSize = 3
-  const squares = Array.from({ length: boardSize * boardSize }, () => null as null | 'X' | 'O')
+  const board = Array.from({ length: boardSize }, () =>
+    Array.from({ length: boardSize }, () => null as SquareValue),
+  )
 
   const statusText = 'Next player: X'
 
-  function handleSquareClick(row: number, col: number) {
-    void row
-    void col
+  function handleSquareClick(position: Position) {
+    void position
   }
 
   function handleResetClick() {}
@@ -28,7 +30,7 @@ function App() {
         </section>
 
         <section className="tttPanel" aria-label="Game board">
-          <GameBoard boardSize={boardSize} squares={squares} onSquareClick={handleSquareClick} />
+          <GameBoard board={board} onSquareClick={handleSquareClick} />
         </section>
       </main>
     </div>

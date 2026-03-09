@@ -1,35 +1,35 @@
-import type { SquareValue } from '../../types'
+import type { Board, Position } from '../../types'
 
 type GameBoardProps = {
-  boardSize: number
-  squares: SquareValue[]
-  onSquareClick: (row: number, col: number) => void
-  isDisabled?: (row: number, col: number) => boolean
+  board: Board
+  onSquareClick: (position: Position) => void
+  isDisabled?: (position: Position) => boolean
 }
 
-export function GameBoard({ boardSize, squares, onSquareClick, isDisabled }: GameBoardProps) {
+export function GameBoard({ board, onSquareClick, isDisabled }: GameBoardProps) {
   return (
-    <div className="tttBoard" style={{ gridTemplateColumns: `repeat(${boardSize}, 1fr)` }}>
-      {squares.map((value, index) => {
-        const row = Math.floor(index / boardSize)
-        const col = index % boardSize
-        const disabled = isDisabled?.(row, col) ?? false
+    <div className="tttBoard" style={{ gridTemplateColumns: `repeat(${board[0]?.length ?? 0}, 1fr)` }}>
+      {board.map((rowValues, row) =>
+        rowValues.map((value, col) => {
+          const position = { row, col }
+          const disabled = isDisabled?.(position) ?? false
 
-        return (
-          <button
-            key={`${row}-${col}`}
-            type="button"
-            className="tttSquare"
-            data-row={row}
-            data-col={col}
-            disabled={disabled}
-            aria-disabled={disabled}
-            onClick={() => onSquareClick(row, col)}
-          >
-            {value}
-          </button>
-        )
-      })}
+          return (
+            <button
+              key={`${row}-${col}`}
+              type="button"
+              className="tttSquare"
+              data-row={row}
+              data-col={col}
+              disabled={disabled}
+              aria-disabled={disabled}
+              onClick={() => onSquareClick(position)}
+            >
+              {value}
+            </button>
+          )
+        }),
+      )}
     </div>
   )
 }
