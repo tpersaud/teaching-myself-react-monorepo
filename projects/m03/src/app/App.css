@@ -84,10 +84,37 @@
   border: 1px solid var(--ttt-border);
   border-radius: var(--ttt-square-radius);
   user-select: none;
+  cursor: pointer;
+  transition:
+    transform 90ms ease,
+    background-color 120ms ease,
+    border-color 120ms ease,
+    box-shadow 120ms ease;
 }
 
 .tttSquare:hover {
   background: var(--ttt-square-bg-hover);
+}
+
+.tttSquare:active {
+  transform: translateY(1px);
+}
+
+.tttSquare:focus-visible {
+  outline: 3px solid rgba(100, 108, 255, 0.85);
+  outline-offset: 2px;
+}
+
+.tttSquare:disabled,
+.tttSquare[aria-disabled='true'] {
+  cursor: not-allowed;
+  opacity: 0.6;
+  transform: none;
+}
+
+.tttSquare:disabled:hover,
+.tttSquare[aria-disabled='true']:hover {
+  background: var(--ttt-square-bg);
 }
 
 @media (min-width: 740px) {
