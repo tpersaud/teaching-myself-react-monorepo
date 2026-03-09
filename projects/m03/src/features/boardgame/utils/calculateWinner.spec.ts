@@ -90,9 +90,9 @@ describe('calculateWinner', () => {
     it('returns inProgress when there is no winner and moves remain (4x4)', () => {
       const board = makeBoard([
         ['X', 'O', 'X', 'O'],
-        ['O', 'X', 'O', 'X'],
+        ['O', 'X', 'X', 'X'],
         ['X', 'O', 'X', null],
-        ['O', 'X', 'O', 'X'],
+        ['O', 'X', 'O', 'O'],
       ])
       expect(calculateWinner(board)).toEqual({ kind: 'inProgress' } satisfies GameResult)
     })

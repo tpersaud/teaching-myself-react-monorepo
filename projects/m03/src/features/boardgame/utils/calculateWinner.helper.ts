@@ -32,6 +32,9 @@ export const isLineEmpty = (line: SquareValue[]): boolean =>
 export const isWinningLine = (line: SquareValue[]): boolean =>
   line.length > 0 && line[0] !== null && line.every(square => square === line[0]);
 
+export const isBoardFull = (board: Board): boolean =>
+  board.every(row => row.every(square => square !== null));
+
 export const getRows = (board: Board): SquareValue[][] =>
   board.slice();
 
