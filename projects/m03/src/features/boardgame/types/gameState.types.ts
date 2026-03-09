@@ -4,6 +4,5 @@ import type { PlayerMark } from './squareValue.types'
 export type GameState = {
   history: Board[]
   currentMoveIndex: number
-  startingPlayer: PlayerMark
   nextPlayer: PlayerMark
 }
