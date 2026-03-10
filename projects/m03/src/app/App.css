@@ -54,7 +54,11 @@
 .tttMain {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--ttt-gap);
+  gap: calc(var(--ttt-gap) + 0.5rem);
+}
+
+.tttPanel[aria-label='Game settings'] {
+  margin-bottom: calc(var(--ttt-gap) + 0.5rem);
 }
 
 .tttPanel[aria-label='Game board'] {
@@ -110,6 +114,32 @@
   display: flex;
   justify-content: center;
   gap: 0.5rem;
+  padding: 0.85rem 0.9rem;
+  border-radius: 12px;
+  background: rgba(18, 70, 42, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow:
+    0 2px 0 rgba(255, 255, 255, 0.06) inset,
+    0 12px 22px rgba(0, 0, 0, 0.22);
+  color: var(--ttt-chalk);
+}
+
+.tttControls label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.tttScoreboard {
+  margin-top: 1rem;
+  padding: 0.85rem 0.9rem;
+  border-radius: 12px;
+  background: rgba(18, 70, 42, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow:
+    0 2px 0 rgba(255, 255, 255, 0.06) inset,
+    0 12px 22px rgba(0, 0, 0, 0.22);
+  color: var(--ttt-chalk);
 }
 
 .tttButton {
@@ -155,26 +185,6 @@
     radial-gradient(520px 260px at 18% 20%, rgba(255, 255, 255, 0.07), transparent 62%),
     radial-gradient(520px 320px at 78% 30%, rgba(255, 255, 255, 0.05), transparent 60%),
     radial-gradient(520px 340px at 42% 82%, rgba(0, 0, 0, 0.32), transparent 60%),
-    linear-gradient(
-      to right,
-      transparent 0 31.5%,
-      rgba(255, 255, 255, 0.78) 31.5% 32.4%,
-      rgba(255, 255, 255, 0.35) 32.4% 33.2%,
-      transparent 33.2% 65.5%,
-      rgba(255, 255, 255, 0.78) 65.5% 66.4%,
-      rgba(255, 255, 255, 0.35) 66.4% 67.2%,
-      transparent 67.2% 100%
-    ),
-    linear-gradient(
-      to bottom,
-      transparent 0 31.5%,
-      rgba(255, 255, 255, 0.78) 31.5% 32.4%,
-      rgba(255, 255, 255, 0.35) 32.4% 33.2%,
-      transparent 33.2% 65.5%,
-      rgba(255, 255, 255, 0.78) 65.5% 66.4%,
-      rgba(255, 255, 255, 0.35) 66.4% 67.2%,
-      transparent 67.2% 100%
-    ),
     linear-gradient(180deg, rgba(12, 28, 24, 0.98), rgba(8, 18, 16, 0.98));
   border: 1px solid rgba(255, 255, 255, 0.12);
   box-shadow:
@@ -197,8 +207,12 @@
     radial-gradient(260px 180px at 50% 35%, rgba(255, 255, 255, 0.04), transparent 66%),
     radial-gradient(420px 260px at 25% 20%, rgba(255, 255, 255, 0.03), transparent 64%),
     linear-gradient(180deg, rgba(0, 0, 0, 0.16), rgba(0, 0, 0, 0.10));
-  border: 1px solid transparent;
+  border-top: 2px solid transparent;
+  border-left: 2px solid transparent;
+  border-right: 2px solid rgba(255, 255, 255, 0.34);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.34);
   border-radius: 0;
+  box-sizing: border-box;
   user-select: none;
   cursor: pointer;
   transition:
@@ -220,10 +234,17 @@
     radial-gradient(260px 180px at 50% 35%, rgba(255, 255, 255, 0.06), transparent 66%),
     radial-gradient(420px 260px at 25% 20%, rgba(255, 255, 255, 0.04), transparent 64%),
     linear-gradient(180deg, rgba(0, 0, 0, 0.10), rgba(0, 0, 0, 0.06));
-  border-color: transparent;
   box-shadow:
     0 1px 0 rgba(255, 255, 255, 0.06) inset,
     0 18px 26px rgba(0, 0, 0, 0.22);
+}
+
+.tttSquare--noRight {
+  border-right-color: transparent;
+}
+
+.tttSquare--noBottom {
+  border-bottom-color: transparent;
 }
 
 .tttSquare:active {
@@ -262,6 +283,7 @@
   .tttMain {
     grid-template-columns: 320px 1fr;
     align-items: start;
+    column-gap: calc(var(--ttt-gap) + 0.75rem);
   }
 
   .tttBoard {

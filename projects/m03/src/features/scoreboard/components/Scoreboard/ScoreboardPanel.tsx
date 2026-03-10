@@ -6,7 +6,7 @@ type ScoreboardPanelProps = {
 
 export function ScoreboardPanel({ scoreboard }: ScoreboardPanelProps) {
   return (
-    <div>
+    <div className="tttScoreboard">
       <div>
         <strong>Global</strong>
       </div>
