@@ -6,9 +6,19 @@ import { createBoard } from "../utils/boardCommands/createBoard";
 import { applyMove } from "../utils/boardCommands/applyMove";
 import { getNextPlayer } from "../utils/boardCommands/getNextPlayer";
 
+function createGameId(): string {
+  if (typeof crypto !== 'undefined' && 'randomUUID' in crypto) {
+    return crypto.randomUUID()
+  }
+
+  return `${Date.now()}-${Math.random().toString(16).slice(2)}`
+}
+
 export function useTicTacToe(boardSize: number, startingPlayer: PlayerMark) {
   const [board, setBoard] = useState<Board>(() => createBoard(boardSize));
   const [currentPlayer, setCurrentPlayer] = useState<PlayerMark>(startingPlayer);
+  const [moves, setMoves] = useState<Array<{ player: PlayerMark; position: Position }>>([]);
+  const [gameId, setGameId] = useState<string>(() => createGameId());
   const result = useMemo<GameResult>(() => calculateWinner(board), [board]);
 
   function onSquareClick(position: Position): void {
@@ -16,6 +26,7 @@ export function useTicTacToe(boardSize: number, startingPlayer: PlayerMark) {
       return
     }
 
+    setMoves((prev) => [...prev, { player: currentPlayer, position }])
     const newBoard = applyMove(board, position, currentPlayer)
     setBoard(newBoard)
     setCurrentPlayer(getNextPlayer(currentPlayer))
@@ -24,6 +35,8 @@ export function useTicTacToe(boardSize: number, startingPlayer: PlayerMark) {
   function resetGame(): void {
     setBoard(createBoard(boardSize));
     setCurrentPlayer(startingPlayer);
+    setMoves([])
+    setGameId(createGameId())
   }
 
   function getStatusText(): string {
@@ -48,6 +61,8 @@ export function useTicTacToe(boardSize: number, startingPlayer: PlayerMark) {
     board,
     currentPlayer,
     result,
+    moves,
+    gameId,
     statusText: getStatusText(),
     onSquareClick,
     resetGame
