@@ -3,9 +3,9 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color-scheme: light;
+  color: rgba(255, 255, 255, 0.92);
+  background-color: #2b2b2b;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -28,6 +28,25 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background:
+    radial-gradient(900px 520px at 12% 18%, rgba(255, 255, 255, 0.10), transparent 62%),
+    radial-gradient(760px 520px at 84% 22%, rgba(255, 255, 255, 0.08), transparent 60%),
+    radial-gradient(520px 420px at 35% 85%, rgba(0, 0, 0, 0.35), transparent 55%),
+    repeating-linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.030) 0px,
+      rgba(255, 255, 255, 0.030) 2px,
+      rgba(0, 0, 0, 0.030) 6px,
+      rgba(0, 0, 0, 0.030) 10px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.020) 0px,
+      rgba(255, 255, 255, 0.020) 3px,
+      rgba(0, 0, 0, 0.025) 7px,
+      rgba(0, 0, 0, 0.025) 12px
+    ),
+    linear-gradient(180deg, #2e2f31 0%, #1c1d1f 50%, #121214 100%);
 }
 
 h1 {
@@ -42,7 +61,7 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: rgba(255, 255, 255, 0.06);
   cursor: pointer;
   transition: border-color 0.25s;
 }
