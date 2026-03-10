@@ -1,5 +1,7 @@
 import type { Board, Position } from '../../types'
 
+import { Square } from '../Square'
+
 type GameBoardProps = {
   board: Board
   onSquareClick: (position: Position) => void
@@ -15,18 +17,13 @@ export function GameBoard({ board, onSquareClick, isDisabled }: GameBoardProps) 
           const disabled = isDisabled?.(position) ?? false
 
           return (
-            <button
+            <Square
               key={`${row}-${col}`}
-              type="button"
-              className="tttSquare"
-              data-row={row}
-              data-col={col}
+              value={value}
+              position={position}
               disabled={disabled}
-              aria-disabled={disabled}
-              onClick={() => onSquareClick(position)}
-            >
-              {value}
-            </button>
+              onClick={onSquareClick}
+            />
           )
         }),
       )}

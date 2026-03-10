@@ -1,7 +1,7 @@
 import './App.css'
 
 import { GameBoard } from '../features/boardgame/components/GameBoard'
-import { StatusBar } from '../features/boardgame/components/StatusBar'
+import { GameStatus } from '../features/boardgame/components/GameStatus'
 import type { PlayerMark } from '../features/boardgame/types'
 import { useTicTacToe } from '../features/boardgame/hooks/useTicTacToe'
 
@@ -11,6 +11,7 @@ function App() {
 
   const {
     board,
+    result,
     statusText,
     onSquareClick,
     resetGame,
@@ -24,11 +25,15 @@ function App() {
 
       <main className="tttMain">
         <section className="tttPanel" aria-label="Game status">
-          <StatusBar status={statusText} onReset={resetGame} />
+          <GameStatus status={statusText} onReset={resetGame} />
         </section>
 
         <section className="tttPanel" aria-label="Game board">
-          <GameBoard board={board} onSquareClick={onSquareClick} />
+          <GameBoard
+            board={board}
+            onSquareClick={onSquareClick}
+            isDisabled={(position) => result.kind !== 'inProgress' || board[position.row]?.[position.col] != null}
+          />
         </section>
       </main>
     </div>
