@@ -52,4 +52,24 @@ describe('App (UI integration)', () => {
     expect(screen.getByTestId('ttt-square-0-0')).toHaveTextContent(/^\s*$/)
     expect(screen.getByTestId('ttt-status')).toHaveTextContent('Next player: X')
   })
+
+  it('changes board size (3x3, 4x4, 5x5) by remounting the game', async () => {
+    const user = userEvent.setup()
+    render(<App />)
+
+    expect(screen.queryByTestId('ttt-square-3-3')).not.toBeInTheDocument()
+    expect(screen.queryByTestId('ttt-square-4-4')).not.toBeInTheDocument()
+
+    const boardSizeSelect = screen.getByLabelText(/board size/i)
+
+    await user.selectOptions(boardSizeSelect, '4')
+    expect(screen.getByTestId('ttt-square-3-3')).toBeInTheDocument()
+    expect(screen.queryByTestId('ttt-square-4-4')).not.toBeInTheDocument()
+
+    await user.selectOptions(boardSizeSelect, '5')
+    expect(screen.getByTestId('ttt-square-4-4')).toBeInTheDocument()
+
+    await user.selectOptions(boardSizeSelect, '3')
+    expect(screen.queryByTestId('ttt-square-3-3')).not.toBeInTheDocument()
+  })
 })
