@@ -1,5 +1,5 @@
 import type { Board, Position } from '../../types'
-import { calculateWinner } from '../calculateWinner'
+import { calculateWinner } from '../calculateWinner/index'
 import { isValidPosition } from './isValidPosition'
 import { isSquareEmpty } from './isSquareEmpty'
 
