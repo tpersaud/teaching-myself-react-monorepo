@@ -72,4 +72,21 @@ describe('App (UI integration)', () => {
     await user.selectOptions(boardSizeSelect, '3')
     expect(screen.queryByTestId('ttt-square-3-3')).not.toBeInTheDocument()
   })
+
+  it('changes starting player (X/O) by remounting the game', async () => {
+    const user = userEvent.setup()
+    render(<App />)
+
+    expect(screen.getByTestId('ttt-status')).toHaveTextContent('Next player: X')
+
+    await user.click(screen.getByTestId('ttt-square-0-0'))
+    expect(screen.getByTestId('ttt-square-0-0')).toHaveTextContent('X')
+    expect(screen.getByTestId('ttt-status')).toHaveTextContent('Next player: O')
+
+    const startingPlayerSelect = screen.getByLabelText(/starting player/i)
+    await user.selectOptions(startingPlayerSelect, 'O')
+
+    expect(screen.getByTestId('ttt-square-0-0')).toHaveTextContent(/^[\s]*$/)
+    expect(screen.getByTestId('ttt-status')).toHaveTextContent('Next player: O')
+  })
 })

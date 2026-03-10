@@ -66,7 +66,7 @@ function TicTacToeGame({ boardSize, startingPlayer, recordCompletedMatch, scoreb
 
 function App() {
   const [boardSize, setBoardSize] = useState<BoardSize>(3)
-  const startingPlayer: PlayerMark = 'X';
+  const [startingPlayer, setStartingPlayer] = useState<PlayerMark>('X')
 
   const { scoreboard, recordCompletedMatch } = useScoreboard()
 
@@ -84,6 +84,14 @@ function App() {
               <option value={3}>3x3</option>
               <option value={4}>4x4</option>
               <option value={5}>5x5</option>
+            </select>
+          </label>
+
+          <label>
+            Starting player
+            <select value={startingPlayer} onChange={(e) => setStartingPlayer(e.target.value as PlayerMark)}>
+              <option value={'X'}>X</option>
+              <option value={'O'}>O</option>
             </select>
           </label>
         </div>
