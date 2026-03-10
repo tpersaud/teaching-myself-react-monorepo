@@ -7,7 +7,7 @@ import { useTicTacToe } from '../features/boardgame/hooks/useTicTacToe'
 
 function App() {
   const boardSize = 3;
-  const currentPlayer: PlayerMark = 'X';
+  const startingPlayer: PlayerMark = 'X';
 
   const {
     board,
@@ -15,7 +15,7 @@ function App() {
     statusText,
     onSquareClick,
     resetGame,
-  } = useTicTacToe(boardSize, currentPlayer);
+  } = useTicTacToe(boardSize, startingPlayer);
 
   return (
     <div className="tttApp">

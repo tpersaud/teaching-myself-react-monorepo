@@ -8,7 +8,7 @@ import { getNextPlayer } from "../utils/boardCommands/getNextPlayer";
 
 export function useTicTacToe(boardSize: number, startingPlayer: PlayerMark) {
   const [board, setBoard] = useState<Board>(() => createBoard(boardSize));
-  const [nextPlayer, setNextPlayer] = useState<PlayerMark>(startingPlayer);
+  const [currentPlayer, setCurrentPlayer] = useState<PlayerMark>(startingPlayer);
   const result = useMemo<GameResult>(() => calculateWinner(board), [board]);
 
   function onSquareClick(position: Position): void {
@@ -16,14 +16,14 @@ export function useTicTacToe(boardSize: number, startingPlayer: PlayerMark) {
       return
     }
 
-    const newBoard = applyMove(board, position, nextPlayer)
+    const newBoard = applyMove(board, position, currentPlayer)
     setBoard(newBoard)
-    setNextPlayer(getNextPlayer(nextPlayer))
+    setCurrentPlayer(getNextPlayer(currentPlayer))
   }
 
   function resetGame(): void {
     setBoard(createBoard(boardSize));
-    setNextPlayer(startingPlayer);
+    setCurrentPlayer(startingPlayer);
   }
 
   function getStatusText(): string {
@@ -35,7 +35,7 @@ export function useTicTacToe(boardSize: number, startingPlayer: PlayerMark) {
         return 'Draw'
 
       case 'inProgress':
-        return `Next player: ${nextPlayer}`
+        return `Next player: ${currentPlayer}`
 
       default: {
         const exhaustiveCheck: never = result
@@ -46,7 +46,7 @@ export function useTicTacToe(boardSize: number, startingPlayer: PlayerMark) {
 
   return {
     board,
-    nextPlayer,
+    currentPlayer,
     result,
     statusText: getStatusText(),
     onSquareClick,
