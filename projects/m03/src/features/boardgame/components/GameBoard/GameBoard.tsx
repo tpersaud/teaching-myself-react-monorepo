@@ -10,7 +10,11 @@ type GameBoardProps = {
 
 export function GameBoard({ board, onSquareClick, isDisabled }: GameBoardProps) {
   return (
-    <div className="tttBoard" style={{ gridTemplateColumns: `repeat(${board[0]?.length ?? 0}, 1fr)` }}>
+    <div
+      className="tttBoard"
+      data-testid="ttt-board"
+      style={{ gridTemplateColumns: `repeat(${board[0]?.length ?? 0}, 1fr)` }}
+    >
       {board.map((rowValues, row) =>
         rowValues.map((value, col) => {
           const position = { row, col }

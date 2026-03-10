@@ -11,47 +11,45 @@ afterEach(() => {
 describe('App (UI integration)', () => {
   it('renders initial status', () => {
     render(<App />)
-    expect(screen.getByRole('status')).toHaveTextContent('Next player: X')
+    expect(screen.getByTestId('ttt-status')).toHaveTextContent('Next player: X')
   })
 
   it('places a mark and toggles next player', async () => {
     const user = userEvent.setup()
     render(<App />)
 
-    const squares = screen.getAllByRole('button').filter((btn) => btn.className.includes('tttSquare'))
-    expect(squares.length).toBe(9)
+    const square00 = screen.getByTestId('ttt-square-0-0')
 
-    await user.click(squares[0]!)
+    await user.click(square00)
 
-    expect(squares[0]).toHaveTextContent('X')
-    expect(screen.getByRole('status')).toHaveTextContent('Next player: O')
+    expect(square00).toHaveTextContent('X')
+    expect(screen.getByTestId('ttt-status')).toHaveTextContent('Next player: O')
   })
 
   it('does not allow clicking an occupied square', async () => {
     const user = userEvent.setup()
     render(<App />)
 
-    const squares = screen.getAllByRole('button').filter((btn) => btn.className.includes('tttSquare'))
+    const square00 = screen.getByTestId('ttt-square-0-0')
 
-    await user.click(squares[0]!)
-    expect(squares[0]).toHaveTextContent('X')
+    await user.click(square00)
+    expect(square00).toHaveTextContent('X')
 
-    await user.click(squares[0]!)
-    expect(squares[0]).toHaveTextContent('X')
+    await user.click(square00)
+    expect(square00).toHaveTextContent('X')
   })
 
   it('reset clears the board and status', async () => {
     const user = userEvent.setup()
     render(<App />)
 
-    const squares = screen.getAllByRole('button').filter((btn) => btn.className.includes('tttSquare'))
-    await user.click(squares[0]!)
-    expect(squares[0]).toHaveTextContent('X')
+    const square00 = screen.getByTestId('ttt-square-0-0')
+    await user.click(square00)
+    expect(square00).toHaveTextContent('X')
 
-    await user.click(screen.getByRole('button', { name: /^reset$/i }))
+    await user.click(screen.getByTestId('ttt-reset'))
 
-    const squaresAfterReset = screen.getAllByRole('button').filter((btn) => btn.className.includes('tttSquare'))
-    expect(squaresAfterReset[0]).toHaveTextContent(/^\s*$/)
-    expect(screen.getByRole('status')).toHaveTextContent('Next player: X')
+    expect(screen.getByTestId('ttt-square-0-0')).toHaveTextContent(/^\s*$/)
+    expect(screen.getByTestId('ttt-status')).toHaveTextContent('Next player: X')
   })
 })

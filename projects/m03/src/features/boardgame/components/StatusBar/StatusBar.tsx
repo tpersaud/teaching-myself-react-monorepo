@@ -8,11 +8,11 @@ type StatusBarProps = {
 export function StatusBar({ status, onReset }: StatusBarProps) {
   return (
     <>
-      <div className="tttStatus" role="status" aria-live="polite">
+      <div className="tttStatus" role="status" aria-live="polite" data-testid="ttt-status">
         {status}
       </div>
       <div className="tttControls">
-        <button type="button" className="tttButton" onClick={onReset}>
+        <button type="button" className="tttButton" onClick={onReset} data-testid="ttt-reset">
           Reset
         </button>
       </div>

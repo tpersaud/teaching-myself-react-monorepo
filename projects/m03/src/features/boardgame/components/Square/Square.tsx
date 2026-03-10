@@ -10,6 +10,8 @@ type SquareProps = {
 export function Square({ value, position, disabled, onClick }: SquareProps) {
   return (
     <button
+      id={`ttt-square-${position.row}-${position.col}`}
+      data-testid={`ttt-square-${position.row}-${position.col}`}
       type="button"
       className="tttSquare"
       data-row={position.row}
